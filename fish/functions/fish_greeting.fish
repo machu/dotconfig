@@ -1,1 +1,1 @@
-/Users/machu/.config/fisherman/bobthefish/fish_greeting.fish
+/Users/machu/.config/fisherman/pure/fish_greeting.fish

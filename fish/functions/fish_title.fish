@@ -1,1 +1,1 @@
-/Users/machu/.config/fisherman/bobthefish/fish_title.fish
+/Users/machu/.config/fisherman/pure/fish_title.fish

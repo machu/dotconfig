@@ -1,18 +1,16 @@
 if not set -q fisher_cmd_name
     status --current-filename | command awk '
-
         {
-            cmd = "fisher"
-
             if (n = split($0, parts, "/")) {
                 gsub(/\.fish$/, "", parts[n])
                 print(parts[n])
             }
-
-            print(cmd)
         }
-
     ' | read -gx fisher_cmd_name
+end
+
+if test -z "$fisher_cmd_name"
+    set -gx fisher_cmd_name "fisher"
 end
 
 function $fisher_cmd_name -d "fish plugin manager"
@@ -32,7 +30,7 @@ function $fisher_cmd_name -d "fish plugin manager"
             return 1
     end
 
-    set -g fisher_version "2.9.0"
+    set -g fisher_version "2.11.0"
     set -g fisher_spinners ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
     set -g __fisher_stdout /dev/stdout
     set -g __fisher_stderr /dev/stderr
@@ -479,7 +477,7 @@ function __fisher_plugin_fetch_items
                 end
 
             case \*
-                printf "%s\n" "$i" | sed 's/[@:]\(.*\)/ \1/' | read i branch
+                printf "%s\n" "$i" | sed 's/[@]\(.*\)/ \1/' | read i branch
                 set names (__fisher_plugin_get_names "$i")
         end
 
@@ -556,8 +554,8 @@ end
 
 function __fisher_plugin_url_clone_async -a url name branch
     switch "$url"
-        case https://\*
-        case github.com/\*
+        case http://\* https://\*
+        case {gitlab.com,github.com,bitbucket.org}\*
             set url "https://$url"
 
         case \?\*/\?\*
@@ -1226,7 +1224,7 @@ function __fisher_list_remote -a format
             gsub(/%url/, url, fmt)
             gsub(/%info/, info, fmt)
 
-            printf(fmt)
+            printf("%s", fmt)
         }
 
         BEGIN {
@@ -1606,7 +1604,7 @@ function __fisher_plugin_get_names
         {
             sub(/\/$/, "")
             n = split($0, s, "/")
-            sub(/^(omf|omf-theme|omf-plugin|plugin|theme|fish|fisher)-/, "", s[n])
+            sub(/^(omf|omf-theme|omf-plugin|plugin|theme|fish|fisher|fish-plugin|fish-theme)-/, "", s[n])
 
             printf("%s\n%s\n", s[n], s[n - 1])
         }

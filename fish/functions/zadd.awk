@@ -1,0 +1,1 @@
+/Users/machu/.config/fisherman/z/functions/zadd.awk

@@ -1,0 +1,1 @@
+/Users/machu/.config/fisherman/rbenv/completions/rbenv.fish

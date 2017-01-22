@@ -1,0 +1,1 @@
+/Users/machu/.config/fisherman/ghq/completions/ghq.fish

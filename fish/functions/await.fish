@@ -1,0 +1,1 @@
+/Users/machu/.config/fisherman/await/functions/await.fish

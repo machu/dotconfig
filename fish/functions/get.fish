@@ -1,0 +1,1 @@
+/Users/machu/.config/fisherman/get/functions/get.fish
